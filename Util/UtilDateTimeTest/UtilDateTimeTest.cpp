@@ -5,10 +5,17 @@
  * Created on Jan 30, 2016, 1:39:27 PM
  */
 #define BOOST_TEST_DYN_LINK
-#define BOOST_TEST_MODULE UtilDateTime_Test
+#ifdef STAND_ALONE
+#	define BOOST_TEST_MODULE Main
+#endif
+#include <boost/test/unit_test.hpp>
 
 #include "UtilDateTime.h"
 
+#define BOOST_TEST_DYN_LINK
+#ifdef STAND_ALONE
+#	define BOOST_TEST_MODULE Main
+#endif
 #include <boost/test/unit_test.hpp>
 
 #include <stdlib.h>

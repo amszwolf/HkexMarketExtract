@@ -36,6 +36,8 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/Util/UtilDateTime.o \
+	${OBJECTDIR}/Util/UtilHttpRequestHandler.o \
+	${OBJECTDIR}/Util/UtilLogger.o \
 	${OBJECTDIR}/main.o
 
 # Test Directory
@@ -63,36 +65,58 @@ LDLIBSOPTIONS=
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
-	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/hkexmarketextract
+	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${TESTDIR}/TestFiles/f2
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/hkexmarketextract: ${OBJECTFILES}
-	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/hkexmarketextract ${OBJECTFILES} ${LDLIBSOPTIONS}
+${TESTDIR}/TestFiles/f2: ${OBJECTFILES}
+	${MKDIR} -p ${TESTDIR}/TestFiles
+	${LINK.cc} -o ${TESTDIR}/TestFiles/f2 ${OBJECTFILES} ${LDLIBSOPTIONS}
 
 ${OBJECTDIR}/Util/UtilDateTime.o: Util/UtilDateTime.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Util
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -I/usr/local/include/ -I../../boost_1_60_0 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Util/UtilDateTime.o Util/UtilDateTime.cpp
+	$(COMPILE.cc) -O2 -I/usr/local/include/ -I../../boost_1_60_0 -I. -I. -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Util/UtilDateTime.o Util/UtilDateTime.cpp
+
+${OBJECTDIR}/Util/UtilHttpRequestHandler.o: Util/UtilHttpRequestHandler.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Util
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/include/ -I../../boost_1_60_0 -I. -I. -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Util/UtilHttpRequestHandler.o Util/UtilHttpRequestHandler.cpp
+
+${OBJECTDIR}/Util/UtilLogger.o: Util/UtilLogger.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Util
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/include/ -I../../boost_1_60_0 -I. -I. -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Util/UtilLogger.o Util/UtilLogger.cpp
 
 ${OBJECTDIR}/main.o: main.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -I/usr/local/include/ -I../../boost_1_60_0 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
+	$(COMPILE.cc) -O2 -I/usr/local/include/ -I../../boost_1_60_0 -I. -I. -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
 
 # Subprojects
 .build-subprojects:
 
 # Build Test Targets
 .build-tests-conf: .build-conf ${TESTFILES}
-${TESTDIR}/TestFiles/f1: ${TESTDIR}/Util/UtilDateTimeTest/UtilDateTimeTest.o ${OBJECTFILES:%.o=%_nomain.o}
+${TESTDIR}/TestFiles/f1: ${TESTDIR}/Util/RunAllTests.o ${TESTDIR}/Util/UtilDateTimeTest/UtilDateTimeTest.o ${TESTDIR}/Util/UtilDateTimeTest/UtilHttpRequestHandlerTest.o ${OBJECTFILES:%.o=%_nomain.o}
 	${MKDIR} -p ${TESTDIR}/TestFiles
 	${LINK.cc}   -o ${TESTDIR}/TestFiles/f1 $^ ${LDLIBSOPTIONS} 
+
+
+${TESTDIR}/Util/RunAllTests.o: Util/RunAllTests.cpp 
+	${MKDIR} -p ${TESTDIR}/Util
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/include/ -I../../boost_1_60_0 -I. -I. -I. -MMD -MP -MF "$@.d" -o ${TESTDIR}/Util/RunAllTests.o Util/RunAllTests.cpp
 
 
 ${TESTDIR}/Util/UtilDateTimeTest/UtilDateTimeTest.o: Util/UtilDateTimeTest/UtilDateTimeTest.cpp 
 	${MKDIR} -p ${TESTDIR}/Util/UtilDateTimeTest
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -I/usr/local/include/ -I../../boost_1_60_0 -I. -MMD -MP -MF "$@.d" -o ${TESTDIR}/Util/UtilDateTimeTest/UtilDateTimeTest.o Util/UtilDateTimeTest/UtilDateTimeTest.cpp
+	$(COMPILE.cc) -O2 -I/usr/local/include/ -I../../boost_1_60_0 -I. -I. -I. -MMD -MP -MF "$@.d" -o ${TESTDIR}/Util/UtilDateTimeTest/UtilDateTimeTest.o Util/UtilDateTimeTest/UtilDateTimeTest.cpp
+
+
+${TESTDIR}/Util/UtilDateTimeTest/UtilHttpRequestHandlerTest.o: Util/UtilDateTimeTest/UtilHttpRequestHandlerTest.cpp 
+	${MKDIR} -p ${TESTDIR}/Util/UtilDateTimeTest
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/include/ -I../../boost_1_60_0 -I. -I. -I. -MMD -MP -MF "$@.d" -o ${TESTDIR}/Util/UtilDateTimeTest/UtilHttpRequestHandlerTest.o Util/UtilDateTimeTest/UtilHttpRequestHandlerTest.cpp
 
 
 ${OBJECTDIR}/Util/UtilDateTime_nomain.o: ${OBJECTDIR}/Util/UtilDateTime.o Util/UtilDateTime.cpp 
@@ -103,9 +127,35 @@ ${OBJECTDIR}/Util/UtilDateTime_nomain.o: ${OBJECTDIR}/Util/UtilDateTime.o Util/U
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} "$@.d";\
-	    $(COMPILE.cc) -O2 -I/usr/local/include/ -I../../boost_1_60_0 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Util/UtilDateTime_nomain.o Util/UtilDateTime.cpp;\
+	    $(COMPILE.cc) -O2 -I/usr/local/include/ -I../../boost_1_60_0 -I. -I. -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Util/UtilDateTime_nomain.o Util/UtilDateTime.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/Util/UtilDateTime.o ${OBJECTDIR}/Util/UtilDateTime_nomain.o;\
+	fi
+
+${OBJECTDIR}/Util/UtilHttpRequestHandler_nomain.o: ${OBJECTDIR}/Util/UtilHttpRequestHandler.o Util/UtilHttpRequestHandler.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Util
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/Util/UtilHttpRequestHandler.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -I/usr/local/include/ -I../../boost_1_60_0 -I. -I. -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Util/UtilHttpRequestHandler_nomain.o Util/UtilHttpRequestHandler.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/Util/UtilHttpRequestHandler.o ${OBJECTDIR}/Util/UtilHttpRequestHandler_nomain.o;\
+	fi
+
+${OBJECTDIR}/Util/UtilLogger_nomain.o: ${OBJECTDIR}/Util/UtilLogger.o Util/UtilLogger.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Util
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/Util/UtilLogger.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -I/usr/local/include/ -I../../boost_1_60_0 -I. -I. -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Util/UtilLogger_nomain.o Util/UtilLogger.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/Util/UtilLogger.o ${OBJECTDIR}/Util/UtilLogger_nomain.o;\
 	fi
 
 ${OBJECTDIR}/main_nomain.o: ${OBJECTDIR}/main.o main.cpp 
@@ -116,7 +166,7 @@ ${OBJECTDIR}/main_nomain.o: ${OBJECTDIR}/main.o main.cpp
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} "$@.d";\
-	    $(COMPILE.cc) -O2 -I/usr/local/include/ -I../../boost_1_60_0 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main_nomain.o main.cpp;\
+	    $(COMPILE.cc) -O2 -I/usr/local/include/ -I../../boost_1_60_0 -I. -I. -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main_nomain.o main.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/main.o ${OBJECTDIR}/main_nomain.o;\
 	fi
@@ -133,7 +183,7 @@ ${OBJECTDIR}/main_nomain.o: ${OBJECTDIR}/main.o main.cpp
 # Clean Targets
 .clean-conf: ${CLEAN_SUBPROJECTS}
 	${RM} -r ${CND_BUILDDIR}/${CND_CONF}
-	${RM} ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/hkexmarketextract
+	${RM} ${TESTDIR}/TestFiles/f2
 
 # Subprojects
 .clean-subprojects:

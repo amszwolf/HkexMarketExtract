@@ -15,6 +15,10 @@
       <logicalFolder name="Util" displayName="Util" projectFiles="true">
         <itemPath>Util/UtilDateTime.cpp</itemPath>
         <itemPath>Util/UtilDateTime.h</itemPath>
+        <itemPath>Util/UtilHttpRequestHandler.cpp</itemPath>
+        <itemPath>Util/UtilHttpRequestHandler.h</itemPath>
+        <itemPath>Util/UtilLogger.cpp</itemPath>
+        <itemPath>Util/UtilLogger.h</itemPath>
       </logicalFolder>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
@@ -23,7 +27,9 @@
                    projectFiles="false"
                    kind="TEST_LOGICAL_FOLDER">
       <logicalFolder name="f1" displayName="UtilTest" projectFiles="true" kind="TEST">
+        <itemPath>Util/RunAllTests.cpp</itemPath>
         <itemPath>Util/UtilDateTimeTest/UtilDateTimeTest.cpp</itemPath>
+        <itemPath>Util/UtilDateTimeTest/UtilHttpRequestHandlerTest.cpp</itemPath>
       </logicalFolder>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
@@ -45,21 +51,36 @@
         <rebuildPropChanged>true</rebuildPropChanged>
       </toolsSet>
       <compileType>
+        <cTool>
+          <incDir>
+            <pElem>.</pElem>
+            <pElem>.</pElem>
+          </incDir>
+        </cTool>
         <ccTool>
           <incDir>
             <pElem>/usr/local/include/</pElem>
+            <pElem>/usr/include/</pElem>
+            <pElem>.</pElem>
           </incDir>
+          <commandLine>-std=c++11</commandLine>
           <useLinkerLibraries>false</useLinkerLibraries>
         </ccTool>
         <linkerTool>
+          <output>${TESTDIR}/TestFiles/f2</output>
           <linkerAddLib>
             <pElem>/usr/local/lib</pElem>
           </linkerAddLib>
           <linkerLibItems>
             <linkerLibLibItem>boost_date_time</linkerLibLibItem>
+            <linkerLibLibItem>boost_system</linkerLibLibItem>
+            <linkerLibLibItem>boost_thread</linkerLibLibItem>
+            <linkerLibLibItem>log4cplus</linkerLibLibItem>
           </linkerLibItems>
         </linkerTool>
       </compileType>
+      <item path="Util/RunAllTests.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="Util/UtilDateTime.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Util/UtilDateTime.h" ex="false" tool="3" flavor2="0">
@@ -68,6 +89,19 @@
             ex="false"
             tool="1"
             flavor2="0">
+      </item>
+      <item path="Util/UtilDateTimeTest/UtilHttpRequestHandlerTest.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="Util/UtilHttpRequestHandler.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Util/UtilHttpRequestHandler.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Util/UtilLogger.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Util/UtilLogger.h" ex="false" tool="3" flavor2="0">
       </item>
       <folder path="TestFiles">
         <ccTool>
@@ -91,21 +125,6 @@
           <output>${TESTDIR}/TestFiles/f1</output>
         </linkerTool>
       </folder>
-      <folder path="TestFiles/f2">
-        <cTool>
-          <incDir>
-            <pElem>.</pElem>
-          </incDir>
-        </cTool>
-        <ccTool>
-          <incDir>
-            <pElem>.</pElem>
-          </incDir>
-        </ccTool>
-        <linkerTool>
-          <output>${TESTDIR}/TestFiles/f2</output>
-        </linkerTool>
-      </folder>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
         <ccTool>
           <incDir>
@@ -123,12 +142,18 @@
       <compileType>
         <cTool>
           <developmentMode>5</developmentMode>
+          <incDir>
+            <pElem>.</pElem>
+            <pElem>.</pElem>
+          </incDir>
         </cTool>
         <ccTool>
           <developmentMode>5</developmentMode>
           <incDir>
             <pElem>/usr/local/include/</pElem>
             <pElem>../../boost_1_60_0</pElem>
+            <pElem>.</pElem>
+            <pElem>.</pElem>
           </incDir>
         </ccTool>
         <fortranCompilerTool>
@@ -137,7 +162,12 @@
         <asmTool>
           <developmentMode>5</developmentMode>
         </asmTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f2</output>
+        </linkerTool>
       </compileType>
+      <item path="Util/RunAllTests.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="Util/UtilDateTime.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Util/UtilDateTime.h" ex="false" tool="3" flavor2="0">
@@ -146,6 +176,19 @@
             ex="false"
             tool="1"
             flavor2="0">
+      </item>
+      <item path="Util/UtilDateTimeTest/UtilHttpRequestHandlerTest.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="Util/UtilHttpRequestHandler.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Util/UtilHttpRequestHandler.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Util/UtilLogger.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Util/UtilLogger.h" ex="false" tool="3" flavor2="0">
       </item>
       <folder path="TestFiles/f1">
         <cTool>
@@ -160,21 +203,6 @@
         </ccTool>
         <linkerTool>
           <output>${TESTDIR}/TestFiles/f1</output>
-        </linkerTool>
-      </folder>
-      <folder path="TestFiles/f2">
-        <cTool>
-          <incDir>
-            <pElem>.</pElem>
-          </incDir>
-        </cTool>
-        <ccTool>
-          <incDir>
-            <pElem>.</pElem>
-          </incDir>
-        </ccTool>
-        <linkerTool>
-          <output>${TESTDIR}/TestFiles/f2</output>
         </linkerTool>
       </folder>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
