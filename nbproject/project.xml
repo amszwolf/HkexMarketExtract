@@ -11,6 +11,7 @@
             <make-dep-projects/>
             <sourceRootList>
                 <sourceRootElem>Util</sourceRootElem>
+                <sourceRootElem>DataExtract</sourceRootElem>
             </sourceRootList>
             <confList>
                 <confElem>
