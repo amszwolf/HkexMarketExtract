@@ -8,6 +8,12 @@
 #ifndef INSTRUMENT_H
 #define	INSTRUMENT_H
 
+#include <string>
+#include <map>
+
+typedef double PriceType;
+typedef long VolumeType;
+
 class CInstrument {
 public:
 	enum Month
@@ -27,23 +33,27 @@ public:
 		DEC = 12
 	};	
 	
+	static std::map<std::string, int> ExpiryMonthMap;
+	
 	std::string InstrumentName;
 	
 	Month ExpiryMonth;
 
 	int ExpiryYear;
 	
-	double OpenPrice;
+	PriceType OpenPrice;
 	
-	double ClosePrice;
+	PriceType ClosePrice;
 	
-	double DailyHigh;
+	PriceType DailyHigh;
 	
-	double DailyLow;
-	
-	long Volume;
+	PriceType DailyLow;
 
-	long OpenInterest;
+	PriceType ClosePriceChange;
+	
+	VolumeType Volume;
+
+	VolumeType OpenInterest;
 
 	int	 OpenInterestChange;
 	
@@ -67,7 +77,17 @@ public:
 	/**
 	 * Destructor
 	 */
-    virtual ~CInstrument();
+    virtual ~CInstrument() {}
+
+protected:
+
+	/**
+	 * Convert string to int
+	 * 
+	 * @param str 	Raw text
+	 * @return Converted value
+	 */
+	int ConvertStringToInt(std::string&& str) const;
 
 private:
 	/**

@@ -13,6 +13,9 @@
                    displayName="Source Files"
                    projectFiles="true">
       <logicalFolder name="DataExtract" displayName="DataExtract" projectFiles="true">
+        <itemPath>DataExtract/FutureInstrument.cpp</itemPath>
+        <itemPath>DataExtract/FutureInstrument.h</itemPath>
+        <itemPath>DataExtract/Instrument.cpp</itemPath>
         <itemPath>DataExtract/Instrument.h</itemPath>
       </logicalFolder>
       <logicalFolder name="Util" displayName="Util" projectFiles="true">
@@ -29,7 +32,8 @@
                    displayName="Test Files"
                    projectFiles="false"
                    kind="TEST_LOGICAL_FOLDER">
-      <logicalFolder name="f1" displayName="UtilTest" projectFiles="true" kind="TEST">
+      <logicalFolder name="f1" displayName="AllTests" projectFiles="true" kind="TEST">
+        <itemPath>DataExtract/DataExtractTest/FutureInstrumentTest.cpp</itemPath>
         <itemPath>Util/RunAllTests.cpp</itemPath>
         <itemPath>Util/UtilDateTimeTest/UtilDateTimeTest.cpp</itemPath>
         <itemPath>Util/UtilDateTimeTest/UtilHttpRequestHandlerTest.cpp</itemPath>
@@ -59,6 +63,10 @@
           <incDir>
             <pElem>.</pElem>
             <pElem>.</pElem>
+            <pElem>.</pElem>
+            <pElem>.</pElem>
+            <pElem>.</pElem>
+            <pElem>.</pElem>
           </incDir>
         </cTool>
         <ccTool>
@@ -79,10 +87,22 @@
             <linkerLibLibItem>boost_date_time</linkerLibLibItem>
             <linkerLibLibItem>boost_system</linkerLibLibItem>
             <linkerLibLibItem>boost_thread</linkerLibLibItem>
+            <linkerLibLibItem>boost_regex</linkerLibLibItem>
             <linkerLibLibItem>log4cplus</linkerLibLibItem>
           </linkerLibItems>
         </linkerTool>
       </compileType>
+      <item path="DataExtract/DataExtractTest/FutureInstrumentTest.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="DataExtract/FutureInstrument.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="DataExtract/FutureInstrument.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="DataExtract/Instrument.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="DataExtract/Instrument.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Util/RunAllTests.cpp" ex="false" tool="1" flavor2="0">
@@ -113,6 +133,7 @@
         <ccTool>
           <incDir>
             <pElem>Util</pElem>
+            <pElem>DataExtract</pElem>
           </incDir>
         </ccTool>
         <linkerTool>
@@ -151,6 +172,10 @@
           <incDir>
             <pElem>.</pElem>
             <pElem>.</pElem>
+            <pElem>.</pElem>
+            <pElem>.</pElem>
+            <pElem>.</pElem>
+            <pElem>.</pElem>
           </incDir>
         </cTool>
         <ccTool>
@@ -158,6 +183,10 @@
           <incDir>
             <pElem>/usr/local/include/</pElem>
             <pElem>../../boost_1_60_0</pElem>
+            <pElem>.</pElem>
+            <pElem>.</pElem>
+            <pElem>.</pElem>
+            <pElem>.</pElem>
             <pElem>.</pElem>
             <pElem>.</pElem>
           </incDir>
@@ -172,6 +201,17 @@
           <output>${TESTDIR}/TestFiles/f2</output>
         </linkerTool>
       </compileType>
+      <item path="DataExtract/DataExtractTest/FutureInstrumentTest.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="DataExtract/FutureInstrument.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="DataExtract/FutureInstrument.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="DataExtract/Instrument.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="DataExtract/Instrument.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Util/RunAllTests.cpp" ex="false" tool="1" flavor2="0">
