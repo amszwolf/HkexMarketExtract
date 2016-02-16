@@ -58,6 +58,8 @@ build: .build-post
 
 .build-post: .build-impl
 # Add your post 'build' code here...
+	cp cfg/*.config ~/config
+	cp Util/UtilTest/*.config ~/config
 
 
 # clean

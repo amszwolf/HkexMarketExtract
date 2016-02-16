@@ -37,3 +37,24 @@ int CInstrument::ConvertStringToInt(std::string&& str) const
 	
 	return sign * atoi(px.c_str());
 }
+
+bool CInstrument::Dump(std::ostringstream& stream)
+{
+	using namespace std;
+
+	stream << "InstrumentName = " << InstrumentName << endl;
+	stream << "ExpiryMonth = " << ExpiryMonth << endl;
+	stream << "ExpiryYear = " << ExpiryYear << endl;
+	stream << "DateTime = " << DateTime << endl;
+	stream << "OpenPrice = " << OpenPrice << endl;
+	stream << "ClosePrice = " << ClosePrice << endl;
+	stream << "DailyHigh = " << DailyHigh << endl;
+	stream << "DailyLow = " << DailyLow << endl;
+	stream << "ClosePriceChange = " << ClosePriceChange << endl;
+	stream << "Volume = " << Volume << endl;
+	stream << "OpenInterest = " << OpenInterest << endl;
+	stream << "OpenInterestChange = " << OpenInterestChange << endl;
+
+	return true;
+}
+	

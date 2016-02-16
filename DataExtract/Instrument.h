@@ -8,8 +8,11 @@
 #ifndef INSTRUMENT_H
 #define	INSTRUMENT_H
 
+#include "UtilDateTime.h"
+
 #include <string>
 #include <map>
+#include <sstream>
 
 typedef double PriceType;
 typedef long VolumeType;
@@ -37,6 +40,8 @@ public:
 	
 	std::string InstrumentName;
 	
+	CUtilDateTime DateTime;	
+	
 	Month ExpiryMonth;
 
 	int ExpiryYear;
@@ -56,16 +61,25 @@ public:
 	VolumeType OpenInterest;
 
 	int	 OpenInterestChange;
-	
+
+	/**
+	 * Dump the instrument
+	 * @param stream String stream
+	 * @return true if success
+	 */
+	bool Dump(std::ostringstream& stream);
+
 	/**
 	 * Constructor 
 	 */
     CInstrument() :
 		InstrumentName(""),
+		DateTime(1900, 1, 1),
 		ExpiryMonth(DEF),
 		ExpiryYear(1900),
 		OpenPrice(0),
 		ClosePrice(0),
+		ClosePriceChange(0),
 		DailyHigh(0),
 		DailyLow(0),
 		Volume(0),
@@ -73,6 +87,24 @@ public:
 		OpenInterestChange(0)
 	{}
 				
+	/**
+	 * Copy constructor 
+	 * @param orig
+	 */
+    CInstrument(const CInstrument& orig) :
+		InstrumentName(orig.InstrumentName),
+		DateTime(orig.DateTime),
+		ExpiryMonth(orig.ExpiryMonth),
+		ExpiryYear(orig.ExpiryYear),
+		OpenPrice(orig.OpenPrice),
+		ClosePrice(orig.ClosePrice),
+		ClosePriceChange(orig.ClosePriceChange),
+		DailyHigh(orig.DailyHigh),
+		DailyLow(orig.DailyLow),
+		Volume(orig.Volume),
+		OpenInterest(orig.OpenInterest),
+		OpenInterestChange(orig.OpenInterestChange)
+	{}
 
 	/**
 	 * Destructor
@@ -88,13 +120,6 @@ protected:
 	 * @return Converted value
 	 */
 	int ConvertStringToInt(std::string&& str) const;
-
-private:
-	/**
-	 * Copy constructor 
-	 * @param orig
-	 */
-    CInstrument(const CInstrument& orig);
 
 };
 

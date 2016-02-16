@@ -8,6 +8,7 @@
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
                    projectFiles="true">
+      <itemPath>cfg/HkexMarketExtract.config</itemPath>
     </logicalFolder>
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
@@ -15,16 +16,22 @@
       <logicalFolder name="DataExtract" displayName="DataExtract" projectFiles="true">
         <itemPath>DataExtract/FutureInstrument.cpp</itemPath>
         <itemPath>DataExtract/FutureInstrument.h</itemPath>
+        <itemPath>DataExtract/HkexExtractor.cpp</itemPath>
+        <itemPath>DataExtract/HkexExtractor.h</itemPath>
         <itemPath>DataExtract/Instrument.cpp</itemPath>
         <itemPath>DataExtract/Instrument.h</itemPath>
       </logicalFolder>
       <logicalFolder name="Util" displayName="Util" projectFiles="true">
+        <itemPath>Util/UtilConfigAccess.cpp</itemPath>
+        <itemPath>Util/UtilConfigAccess.h</itemPath>
         <itemPath>Util/UtilDateTime.cpp</itemPath>
         <itemPath>Util/UtilDateTime.h</itemPath>
         <itemPath>Util/UtilHttpRequestHandler.cpp</itemPath>
         <itemPath>Util/UtilHttpRequestHandler.h</itemPath>
         <itemPath>Util/UtilLogger.cpp</itemPath>
         <itemPath>Util/UtilLogger.h</itemPath>
+        <itemPath>Util/UtilMysqlClient.cpp</itemPath>
+        <itemPath>Util/UtilMysqlClient.h</itemPath>
       </logicalFolder>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
@@ -35,8 +42,11 @@
       <logicalFolder name="f1" displayName="AllTests" projectFiles="true" kind="TEST">
         <itemPath>DataExtract/DataExtractTest/FutureInstrumentTest.cpp</itemPath>
         <itemPath>Util/RunAllTests.cpp</itemPath>
-        <itemPath>Util/UtilDateTimeTest/UtilDateTimeTest.cpp</itemPath>
-        <itemPath>Util/UtilDateTimeTest/UtilHttpRequestHandlerTest.cpp</itemPath>
+        <itemPath>Util/UtilTest/UtilConfigAccessTest.cpp</itemPath>
+        <itemPath>Util/UtilTest/UtilDateTimeTest.cpp</itemPath>
+        <itemPath>Util/UtilTest/UtilHttpRequestHandlerTest.cpp</itemPath>
+        <itemPath>Util/UtilTest/UtilLoggerTest.cpp</itemPath>
+        <itemPath>Util/UtilTest/UtilMysqlClientTest.cpp</itemPath>
       </logicalFolder>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
@@ -45,6 +55,7 @@
                    kind="IMPORTANT_FILES_FOLDER">
       <itemPath>Makefile</itemPath>
     </logicalFolder>
+    <itemPath>Util/UtilTest/UtilConfigAccessTest.config</itemPath>
   </logicalFolder>
   <sourceRootList>
     <Elem>Util</Elem>
@@ -73,6 +84,8 @@
           <incDir>
             <pElem>/usr/local/include/</pElem>
             <pElem>/usr/include/</pElem>
+            <pElem>/usr/local/include/mysql++</pElem>
+            <pElem>/usr/include/mysql</pElem>
             <pElem>.</pElem>
           </incDir>
           <commandLine>-std=c++11</commandLine>
@@ -82,12 +95,15 @@
           <output>${TESTDIR}/TestFiles/f2</output>
           <linkerAddLib>
             <pElem>/usr/local/lib</pElem>
+            <pElem>/usr/lib64/mysql</pElem>
           </linkerAddLib>
           <linkerLibItems>
             <linkerLibLibItem>boost_date_time</linkerLibLibItem>
             <linkerLibLibItem>boost_system</linkerLibLibItem>
             <linkerLibLibItem>boost_thread</linkerLibLibItem>
             <linkerLibLibItem>boost_regex</linkerLibLibItem>
+            <linkerLibLibItem>mysqlpp</linkerLibLibItem>
+            <linkerLibLibItem>mysqlclient</linkerLibLibItem>
             <linkerLibLibItem>log4cplus</linkerLibLibItem>
           </linkerLibItems>
         </linkerTool>
@@ -101,25 +117,23 @@
       </item>
       <item path="DataExtract/FutureInstrument.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="DataExtract/HkexExtractor.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="DataExtract/HkexExtractor.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="DataExtract/Instrument.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="DataExtract/Instrument.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Util/RunAllTests.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="Util/UtilConfigAccess.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Util/UtilConfigAccess.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Util/UtilDateTime.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Util/UtilDateTime.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Util/UtilDateTimeTest/UtilDateTimeTest.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="Util/UtilDateTimeTest/UtilHttpRequestHandlerTest.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
       </item>
       <item path="Util/UtilHttpRequestHandler.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -129,6 +143,43 @@
       </item>
       <item path="Util/UtilLogger.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Util/UtilMysqlClient.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Util/UtilMysqlClient.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Util/UtilTest/UtilConfigAccessTest.config"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="Util/UtilTest/UtilConfigAccessTest.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="Util/UtilTest/UtilDateTimeTest.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Util/UtilTest/UtilHttpRequestHandlerTest.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="Util/UtilTest/UtilLoggerTest.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Util/UtilTest/UtilMysqlClientTest.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cfg/HkexMarketExtract.config" ex="false" tool="3" flavor2="0">
+      </item>
+      <folder path="SourceFiles/DataExtract">
+        <ccTool>
+          <incDir>
+            <pElem>Util</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
       <folder path="TestFiles">
         <ccTool>
           <incDir>
@@ -210,25 +261,23 @@
       </item>
       <item path="DataExtract/FutureInstrument.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="DataExtract/HkexExtractor.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="DataExtract/HkexExtractor.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="DataExtract/Instrument.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="DataExtract/Instrument.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Util/RunAllTests.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="Util/UtilConfigAccess.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Util/UtilConfigAccess.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Util/UtilDateTime.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Util/UtilDateTime.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Util/UtilDateTimeTest/UtilDateTimeTest.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="Util/UtilDateTimeTest/UtilHttpRequestHandlerTest.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
       </item>
       <item path="Util/UtilHttpRequestHandler.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -237,6 +286,36 @@
       <item path="Util/UtilLogger.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Util/UtilLogger.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Util/UtilMysqlClient.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Util/UtilMysqlClient.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Util/UtilTest/UtilConfigAccessTest.config"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="Util/UtilTest/UtilConfigAccessTest.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="Util/UtilTest/UtilDateTimeTest.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Util/UtilTest/UtilHttpRequestHandlerTest.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="Util/UtilTest/UtilLoggerTest.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Util/UtilTest/UtilMysqlClientTest.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cfg/HkexMarketExtract.config" ex="false" tool="3" flavor2="0">
       </item>
       <folder path="TestFiles/f1">
         <cTool>

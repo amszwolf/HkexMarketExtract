@@ -9,16 +9,36 @@
 #define UTILLOGGER_H_
 #include "UtilDateTime.h"
 
+#include <boost/format.hpp>
+
 #include <log4cplus/logger.h>
 #include <log4cplus/loggingmacros.h>
 #include <log4cplus/consoleappender.h>
 #include <log4cplus/fileappender.h>
 #include <log4cplus/layout.h>
 
+#include <sstream>
+#include <string>
+
 using namespace log4cplus;
 using namespace log4cplus::helpers;
 
-class CUtilLogger
+class CUtilLoggerBase : public std::ostringstream
+{
+public:
+	CUtilLoggerBase() {}
+	CUtilLoggerBase(CUtilLoggerBase& base) {}
+	virtual ~CUtilLoggerBase() {}
+	
+	std::string Dump()
+	{
+		std::string out = this->str();
+		this->str(std::string(""));
+		return out;
+	}
+};
+
+class CUtilLogger : public CUtilLoggerBase
 {
 public:
 	static CUtilLogger &Instance();
@@ -28,28 +48,28 @@ public:
 	 * 
 	 * @param msg Log message
 	 */
-	void LogDebug(const char* msg);
+	void LogDebug(const char* msg = "");
 
 	/**
 	 * Log at warning level
 	 * 
 	 * @param msg Log message
 	 */
-	void LogWarning(const char* msg);
+	void LogWarning(const char* msg = "");
 
 	/**
 	 * Log at trace level
 	 * 
 	 * @param msg Log message
 	 */
-	void LogTrace(const char* msg);
+	void LogTrace(const char* msg = "");
 
 	/**
 	 * Log at info level
 	 * 
 	 * @param msg Log message
 	 */
-	void LogInfo(const char* msg);
+	void LogInfo(const char* msg = "");
 
 	static const char* GetLogName();
 	

@@ -20,8 +20,8 @@ CUtilHttpRequestHandler::~CUtilHttpRequestHandler()
 }
 
 bool CUtilHttpRequestHandler::SendRequest(
-	const char* address,
-	const char* request,
+	std::string address,
+	std::string request,
 	std::string& http_response)
 {
 	http_response.clear();

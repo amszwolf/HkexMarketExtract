@@ -5,11 +5,7 @@
  * Created on January 29, 2016, 11:06 PM
  */
 
-#include <cstdlib>
-#include <iostream>
-#include "UtilDateTime.h"
-#include "UtilLogger.h"
-#include "UtilHttpRequestHandler.h"
+#include "DataExtract/HkexExtractor.h"
 
 using namespace std;
 
@@ -19,13 +15,12 @@ using namespace std;
 int main(int argc, char** argv) {
 	Utllog.LogDebug("Started...");
 
-	CUtilHttpRequestHandler req;
-	std::string report;
-	req.SendRequest("www.hkex.com.hk",
-					"/eng/stat/dmstat/dayrpt/hsif160205.htm",
-					report);
+	CHkexExtractor htmlExtractor;
 
-	std::cout << "Report:\n" << report;
+	Utllog.LogDebug("Initializing html extractor.");
+	htmlExtractor.Initialize();
+
+	htmlExtractor.StartExtract();
 	
     return 0;
 }

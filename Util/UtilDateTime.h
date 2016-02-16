@@ -10,7 +10,6 @@
 
 #include <boost/date_time/posix_time/posix_time.hpp>
 
-
 class CUtilDateTime : public boost::posix_time::ptime
 {
 public:
@@ -83,6 +82,9 @@ public:
 	 */
 	static void GetCurrentTimeString(std::string &date,
 							  		 std::string &time);
+
+	static CUtilDateTime GetCurrentTime()
+	{ return CUtilDateTime(boost::posix_time::microsec_clock::local_time());}
 
 private:
 	CUtilDateTime();

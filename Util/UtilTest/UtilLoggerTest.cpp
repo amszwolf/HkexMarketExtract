@@ -1,8 +1,8 @@
 /* 
- * File:   newsimpletest.cpp
+ * File:   UtilLoggerTest.cpp
  * Author: Gavin Chan
  *
- * Created on Jan 30, 2016, 1:39:27 PM
+ * Created on Feb 15, 2016, 2:39:27 PM
  */
 #define BOOST_TEST_DYN_LINK
 #ifdef STAND_ALONE
@@ -10,42 +10,24 @@
 #endif
 #include <boost/test/unit_test.hpp>
 
-#include "UtilDateTime.h"
-
-#include <stdlib.h>
-#include <iostream>
+#include "UtilLogger.h"
 
 /*
  * Simple C++ Test Suite
  */
 BOOST_AUTO_TEST_SUITE( GeneralTest )
 
-BOOST_AUTO_TEST_CASE( DateConvertStringYYYYMMDD )
+BOOST_AUTO_TEST_CASE( Dump )
 {
-	using namespace std;
-	CUtilDateTime datetime(2000, 1, 1);
-	string date = "";
-	string time = "";
+	CUtilLoggerBase loggerBase;
+	auto string1 = std::string{"Hello world!"};
+	auto string2 = std::string{"This is test case."};
 
-	CUtilDateTime::TimeConvertString(datetime, date, time);
-
-	BOOST_CHECK(date == "20000101");
-
-	BOOST_CHECK(time == "00:00:00");
-}
-
-BOOST_AUTO_TEST_CASE( DateTimeConvertString )
-{
-	using namespace std;
-	CUtilDateTime datetime(2000, 1, 1, 11, 10, 22);
-	string date = "";
-	string time = "";
-
-	CUtilDateTime::TimeConvertString(datetime, date, time);
-
-	BOOST_CHECK(date == "20000101");
-
-	BOOST_CHECK(time == "11:10:22");
+	loggerBase << string1;
+	BOOST_CHECK_EQUAL(string1, loggerBase.Dump());
+	
+	loggerBase << string2;
+	BOOST_CHECK_EQUAL(string2, loggerBase.Dump());
 }
 
 BOOST_AUTO_TEST_SUITE_END()

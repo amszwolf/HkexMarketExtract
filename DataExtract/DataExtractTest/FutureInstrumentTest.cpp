@@ -57,5 +57,25 @@ BOOST_AUTO_TEST_CASE( FromHkexStringTest2 )
 	BOOST_CHECK_EQUAL(instmt.OpenInterestChange, 45);
 }
 
+BOOST_AUTO_TEST_CASE( FromHkexStringTest3 )
+{
+	CFutureInstrument instmt;
+	
+	std::string raw = "JUN-16   18,791  18,829  18,791  18,829       2  |  18,030  18,160  17,911     204   18,001     -937  |   22,873   17,911      206     4,132        -14";
+
+	BOOST_CHECK(instmt.FromHkexString(raw));
+
+	BOOST_CHECK_EQUAL(instmt.ExpiryMonth, CFutureInstrument::JUN);
+	BOOST_CHECK_EQUAL(instmt.ExpiryYear, 2016);
+	BOOST_CHECK_EQUAL(instmt.OpenPrice, 18030);
+	BOOST_CHECK_EQUAL(instmt.ClosePrice, 18001);
+	BOOST_CHECK_EQUAL(instmt.ClosePriceChange, -937);
+	BOOST_CHECK_EQUAL(instmt.DailyHigh, 18160);
+	BOOST_CHECK_EQUAL(instmt.DailyLow, 17911);
+	BOOST_CHECK_EQUAL(instmt.Volume, 204);
+	BOOST_CHECK_EQUAL(instmt.OpenInterest, 4132);
+	BOOST_CHECK_EQUAL(instmt.OpenInterestChange, -14);
+}
+
 BOOST_AUTO_TEST_SUITE_END()
 

@@ -7,12 +7,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/code/HkexMarketExtract/DataExtract/HkexExtractor.cpp</file>
             <file>file:/C:/code/HkexMarketExtract/DataExtract/FutureInstrument.h</file>
-            <file>file:/C:/code/HkexMarketExtract/DataExtract/Instrument.h</file>
-            <file>file:/C:/code/HkexMarketExtract/DataExtract/FutureInstrument.cpp</file>
-            <file>file:/C:/code/HkexMarketExtract/Util/UtilHttpRequestHandler.h</file>
+            <file>file:/C:/code/HkexMarketExtract/DataExtract/HkexExtractor.h</file>
             <file>file:/C:/code/HkexMarketExtract/main.cpp</file>
-            <file>file:/C:/code/HkexMarketExtract/DataExtract/DataExtractTest/FutureInstrumentTest.cpp</file>
         </group>
     </open-files>
 </project-private>

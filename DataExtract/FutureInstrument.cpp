@@ -18,7 +18,9 @@ CFutureInstrument::CFutureInstrument() :
 {
 }
 
-CFutureInstrument::CFutureInstrument(const CFutureInstrument& orig) {
+CFutureInstrument::CFutureInstrument(const CFutureInstrument& orig) :
+	CInstrument(orig)
+{
 }
 
 CFutureInstrument::~CFutureInstrument() {
@@ -37,21 +39,21 @@ bool CFutureInstrument::FromHkexString(string& hkex)
 	// 2. Define after-hour trading session
 	for (int i = 0; i < 5; i++)
 	{
-		regexStr += "\\s+(\\+?-?\\d+,?\\d+)";
+		regexStr += "\\s+(\\+?-?\\d*,?\\d+)";
 	}
 
 	// 3. Define day trading session
 	regexStr += "\\s+\\|";
 	for (int i = 0; i < 6; i++)
 	{
-		regexStr += "\\s+(\\+?-?\\d+,?\\d+)";
+		regexStr += "\\s+(\\+?-?\\d*,?\\d+)";
 	}
 
 	// 4. Define combined
 	regexStr += "\\s+\\|";
 	for (int i = 0; i < 5; i++)
 	{
-		regexStr += "\\s+(\\+?-?\\d+,?\\d+)";
+		regexStr += "\\s+(\\+?-?\\d*,?\\d+)";
 	}
 
 	regexStr += ".*";

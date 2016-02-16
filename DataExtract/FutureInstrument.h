@@ -20,6 +20,13 @@ class CFutureInstrument : public CInstrument
     CFutureInstrument();
 
 	/**
+	 * Copy constructor
+	 * 
+	 * @param orig
+	 */
+    CFutureInstrument(const CFutureInstrument& orig);
+
+	/**
 	 * Destructor
 	 */
     virtual ~CFutureInstrument();
@@ -43,12 +50,6 @@ class CFutureInstrument : public CInstrument
 	const size_t iOpenInterest = 17;
 	const size_t iChangeOI = 18;
 	
-	/**
-	 * Deleted copy constructor
-	 * 
-	 * @param orig
-	 */
-    CFutureInstrument(const CFutureInstrument& orig);
 
 };
 

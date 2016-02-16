@@ -8,7 +8,6 @@
 #include "UtilLogger.h"
 #include "UtilDateTime.h"
 
-#include <boost/format.hpp>
 #include <boost/range/algorithm_ext/erase.hpp>
 
 using boost::format;
@@ -44,21 +43,41 @@ CUtilLogger &CUtilLogger::Instance()
 
 void CUtilLogger::LogDebug(const char* msg)
 {
+	if (0 == strlen(msg))
+	{
+		msg = this->Dump().c_str();
+	}
+
 	LOG4CPLUS_DEBUG(_logger, msg);
 }
 
 void CUtilLogger::LogWarning(const char* msg)
 {
+	if (0 == strlen(msg))
+	{
+		msg = this->Dump().c_str();
+	}
+
 	LOG4CPLUS_WARN(_logger, msg);
 }
 
 void CUtilLogger::LogTrace(const char* msg)
 {
+	if (0 == strlen(msg))
+	{
+		msg = this->Dump().c_str();
+	}
+
 	LOG4CPLUS_TRACE(_logger, msg);
 }
 
 void CUtilLogger::LogInfo(const char* msg)
 {
+	if (0 == strlen(msg))
+	{
+		msg = this->Dump().c_str();
+	}
+
 	LOG4CPLUS_INFO(_logger, msg);
 }
 
@@ -68,8 +87,8 @@ const char* CUtilLogger::GetLogName()
 	std::string currTime;
 	CUtilDateTime::GetCurrentTimeString(currDate, currTime);
 	boost::erase_all(currTime, ":");
-	return str(format("/home/gavincyi/log/%s_%s_%s") 
-					% GetProcessName()
-					% currDate.c_str() 
-					% currTime.substr(0, 6)).c_str();
+	return (std::string{"/home/gavincyi/log/"} +
+		   GetProcessName() + "_" +
+		   currDate + "_" +
+		   currTime).c_str();
 }

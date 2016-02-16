@@ -16,8 +16,8 @@ class CUtilHttpRequestHandler {
 public:
     CUtilHttpRequestHandler();
 
-	bool SendRequest(const char* address, 
-					 const char* request,
+	bool SendRequest(std::string address, 
+					 std::string request,
 					 std::string& http_response);
 	
     virtual ~CUtilHttpRequestHandler();

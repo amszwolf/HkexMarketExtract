@@ -1,8 +1,8 @@
 /* 
- * File:   newsimpletest.cpp
+ * File:   UtilConfigAccessTest.cpp
  * Author: Gavin Chan
  *
- * Created on Jan 30, 2016, 1:39:27 PM
+ * Created on Feb 13, 2016, 1:14:00 AM
  */
 #define BOOST_TEST_DYN_LINK
 #ifdef STAND_ALONE
@@ -10,26 +10,27 @@
 #endif
 #include <boost/test/unit_test.hpp>
 
-#include "UtilHttpRequestHandler.h"
+#include "UtilConfigAccess.h"
 
 #include <stdlib.h>
-#include <iostream>
 
-/*
- * Simple C++ Test Suite
- */
 BOOST_AUTO_TEST_SUITE( GeneralTest )
 
-BOOST_AUTO_TEST_CASE( Request )
+BOOST_AUTO_TEST_CASE( GetValue )
 {
-	CUtilHttpRequestHandler req;
-	std::string response = "";
-	BOOST_CHECK(req.SendRequest("josh.com", 
-								"/notes/island-ecn-10th-birthday/",
-								response));
+	auto path = std::string{getenv("HOME")} + "/config/UtilConfigAccessTest.config";
+	CUtilConfigAccess configAccess;
+	std::string key1 = "test1";
+	std::string key2 = "test2";
+	std::string value = "";
+	
+	BOOST_CHECK(configAccess.ReadFromPath(path));
 
-	BOOST_CHECK(response.find("ECN 10th Birthday Source Code Release") !=
-				std::string::npos);
+	BOOST_CHECK(configAccess.GetValue(key1, value));
+	BOOST_CHECK_EQUAL(value, "ABC");
+
+	BOOST_CHECK(configAccess.GetValue(key2, value));
+	BOOST_CHECK_EQUAL(value, "ABC=CDE");
 }
 
 BOOST_AUTO_TEST_SUITE_END()

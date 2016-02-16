@@ -36,10 +36,13 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/DataExtract/FutureInstrument.o \
+	${OBJECTDIR}/DataExtract/HkexExtractor.o \
 	${OBJECTDIR}/DataExtract/Instrument.o \
+	${OBJECTDIR}/Util/UtilConfigAccess.o \
 	${OBJECTDIR}/Util/UtilDateTime.o \
 	${OBJECTDIR}/Util/UtilHttpRequestHandler.o \
 	${OBJECTDIR}/Util/UtilLogger.o \
+	${OBJECTDIR}/Util/UtilMysqlClient.o \
 	${OBJECTDIR}/main.o
 
 # Test Directory
@@ -78,10 +81,20 @@ ${OBJECTDIR}/DataExtract/FutureInstrument.o: DataExtract/FutureInstrument.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -I/usr/local/include/ -I../../boost_1_60_0 -I. -I. -I. -I. -I. -I. -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/DataExtract/FutureInstrument.o DataExtract/FutureInstrument.cpp
 
+${OBJECTDIR}/DataExtract/HkexExtractor.o: DataExtract/HkexExtractor.cpp 
+	${MKDIR} -p ${OBJECTDIR}/DataExtract
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/include/ -I../../boost_1_60_0 -I. -I. -I. -I. -I. -I. -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/DataExtract/HkexExtractor.o DataExtract/HkexExtractor.cpp
+
 ${OBJECTDIR}/DataExtract/Instrument.o: DataExtract/Instrument.cpp 
 	${MKDIR} -p ${OBJECTDIR}/DataExtract
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -I/usr/local/include/ -I../../boost_1_60_0 -I. -I. -I. -I. -I. -I. -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/DataExtract/Instrument.o DataExtract/Instrument.cpp
+
+${OBJECTDIR}/Util/UtilConfigAccess.o: Util/UtilConfigAccess.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Util
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/include/ -I../../boost_1_60_0 -I. -I. -I. -I. -I. -I. -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Util/UtilConfigAccess.o Util/UtilConfigAccess.cpp
 
 ${OBJECTDIR}/Util/UtilDateTime.o: Util/UtilDateTime.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Util
@@ -98,6 +111,11 @@ ${OBJECTDIR}/Util/UtilLogger.o: Util/UtilLogger.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -I/usr/local/include/ -I../../boost_1_60_0 -I. -I. -I. -I. -I. -I. -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Util/UtilLogger.o Util/UtilLogger.cpp
 
+${OBJECTDIR}/Util/UtilMysqlClient.o: Util/UtilMysqlClient.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Util
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/include/ -I../../boost_1_60_0 -I. -I. -I. -I. -I. -I. -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Util/UtilMysqlClient.o Util/UtilMysqlClient.cpp
+
 ${OBJECTDIR}/main.o: main.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
@@ -108,7 +126,7 @@ ${OBJECTDIR}/main.o: main.cpp
 
 # Build Test Targets
 .build-tests-conf: .build-conf ${TESTFILES}
-${TESTDIR}/TestFiles/f1: ${TESTDIR}/DataExtract/DataExtractTest/FutureInstrumentTest.o ${TESTDIR}/Util/RunAllTests.o ${TESTDIR}/Util/UtilDateTimeTest/UtilDateTimeTest.o ${TESTDIR}/Util/UtilDateTimeTest/UtilHttpRequestHandlerTest.o ${OBJECTFILES:%.o=%_nomain.o}
+${TESTDIR}/TestFiles/f1: ${TESTDIR}/DataExtract/DataExtractTest/FutureInstrumentTest.o ${TESTDIR}/Util/RunAllTests.o ${TESTDIR}/Util/UtilTest/UtilConfigAccessTest.o ${TESTDIR}/Util/UtilTest/UtilDateTimeTest.o ${TESTDIR}/Util/UtilTest/UtilHttpRequestHandlerTest.o ${TESTDIR}/Util/UtilTest/UtilLoggerTest.o ${TESTDIR}/Util/UtilTest/UtilMysqlClientTest.o ${OBJECTFILES:%.o=%_nomain.o}
 	${MKDIR} -p ${TESTDIR}/TestFiles
 	${LINK.cc}   -o ${TESTDIR}/TestFiles/f1 $^ ${LDLIBSOPTIONS} 
 
@@ -125,16 +143,34 @@ ${TESTDIR}/Util/RunAllTests.o: Util/RunAllTests.cpp
 	$(COMPILE.cc) -O2 -I/usr/local/include/ -I../../boost_1_60_0 -I. -I. -I. -I. -I. -I. -I. -MMD -MP -MF "$@.d" -o ${TESTDIR}/Util/RunAllTests.o Util/RunAllTests.cpp
 
 
-${TESTDIR}/Util/UtilDateTimeTest/UtilDateTimeTest.o: Util/UtilDateTimeTest/UtilDateTimeTest.cpp 
-	${MKDIR} -p ${TESTDIR}/Util/UtilDateTimeTest
+${TESTDIR}/Util/UtilTest/UtilConfigAccessTest.o: Util/UtilTest/UtilConfigAccessTest.cpp 
+	${MKDIR} -p ${TESTDIR}/Util/UtilTest
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -I/usr/local/include/ -I../../boost_1_60_0 -I. -I. -I. -I. -I. -I. -I. -MMD -MP -MF "$@.d" -o ${TESTDIR}/Util/UtilDateTimeTest/UtilDateTimeTest.o Util/UtilDateTimeTest/UtilDateTimeTest.cpp
+	$(COMPILE.cc) -O2 -I/usr/local/include/ -I../../boost_1_60_0 -I. -I. -I. -I. -I. -I. -I. -MMD -MP -MF "$@.d" -o ${TESTDIR}/Util/UtilTest/UtilConfigAccessTest.o Util/UtilTest/UtilConfigAccessTest.cpp
 
 
-${TESTDIR}/Util/UtilDateTimeTest/UtilHttpRequestHandlerTest.o: Util/UtilDateTimeTest/UtilHttpRequestHandlerTest.cpp 
-	${MKDIR} -p ${TESTDIR}/Util/UtilDateTimeTest
+${TESTDIR}/Util/UtilTest/UtilDateTimeTest.o: Util/UtilTest/UtilDateTimeTest.cpp 
+	${MKDIR} -p ${TESTDIR}/Util/UtilTest
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -I/usr/local/include/ -I../../boost_1_60_0 -I. -I. -I. -I. -I. -I. -I. -MMD -MP -MF "$@.d" -o ${TESTDIR}/Util/UtilDateTimeTest/UtilHttpRequestHandlerTest.o Util/UtilDateTimeTest/UtilHttpRequestHandlerTest.cpp
+	$(COMPILE.cc) -O2 -I/usr/local/include/ -I../../boost_1_60_0 -I. -I. -I. -I. -I. -I. -I. -MMD -MP -MF "$@.d" -o ${TESTDIR}/Util/UtilTest/UtilDateTimeTest.o Util/UtilTest/UtilDateTimeTest.cpp
+
+
+${TESTDIR}/Util/UtilTest/UtilHttpRequestHandlerTest.o: Util/UtilTest/UtilHttpRequestHandlerTest.cpp 
+	${MKDIR} -p ${TESTDIR}/Util/UtilTest
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/include/ -I../../boost_1_60_0 -I. -I. -I. -I. -I. -I. -I. -MMD -MP -MF "$@.d" -o ${TESTDIR}/Util/UtilTest/UtilHttpRequestHandlerTest.o Util/UtilTest/UtilHttpRequestHandlerTest.cpp
+
+
+${TESTDIR}/Util/UtilTest/UtilLoggerTest.o: Util/UtilTest/UtilLoggerTest.cpp 
+	${MKDIR} -p ${TESTDIR}/Util/UtilTest
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/include/ -I../../boost_1_60_0 -I. -I. -I. -I. -I. -I. -I. -MMD -MP -MF "$@.d" -o ${TESTDIR}/Util/UtilTest/UtilLoggerTest.o Util/UtilTest/UtilLoggerTest.cpp
+
+
+${TESTDIR}/Util/UtilTest/UtilMysqlClientTest.o: Util/UtilTest/UtilMysqlClientTest.cpp 
+	${MKDIR} -p ${TESTDIR}/Util/UtilTest
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/local/include/ -I../../boost_1_60_0 -I. -I. -I. -I. -I. -I. -I. -MMD -MP -MF "$@.d" -o ${TESTDIR}/Util/UtilTest/UtilMysqlClientTest.o Util/UtilTest/UtilMysqlClientTest.cpp
 
 
 ${OBJECTDIR}/DataExtract/FutureInstrument_nomain.o: ${OBJECTDIR}/DataExtract/FutureInstrument.o DataExtract/FutureInstrument.cpp 
@@ -150,6 +186,19 @@ ${OBJECTDIR}/DataExtract/FutureInstrument_nomain.o: ${OBJECTDIR}/DataExtract/Fut
 	    ${CP} ${OBJECTDIR}/DataExtract/FutureInstrument.o ${OBJECTDIR}/DataExtract/FutureInstrument_nomain.o;\
 	fi
 
+${OBJECTDIR}/DataExtract/HkexExtractor_nomain.o: ${OBJECTDIR}/DataExtract/HkexExtractor.o DataExtract/HkexExtractor.cpp 
+	${MKDIR} -p ${OBJECTDIR}/DataExtract
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/DataExtract/HkexExtractor.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -I/usr/local/include/ -I../../boost_1_60_0 -I. -I. -I. -I. -I. -I. -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/DataExtract/HkexExtractor_nomain.o DataExtract/HkexExtractor.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/DataExtract/HkexExtractor.o ${OBJECTDIR}/DataExtract/HkexExtractor_nomain.o;\
+	fi
+
 ${OBJECTDIR}/DataExtract/Instrument_nomain.o: ${OBJECTDIR}/DataExtract/Instrument.o DataExtract/Instrument.cpp 
 	${MKDIR} -p ${OBJECTDIR}/DataExtract
 	@NMOUTPUT=`${NM} ${OBJECTDIR}/DataExtract/Instrument.o`; \
@@ -161,6 +210,19 @@ ${OBJECTDIR}/DataExtract/Instrument_nomain.o: ${OBJECTDIR}/DataExtract/Instrumen
 	    $(COMPILE.cc) -O2 -I/usr/local/include/ -I../../boost_1_60_0 -I. -I. -I. -I. -I. -I. -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/DataExtract/Instrument_nomain.o DataExtract/Instrument.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/DataExtract/Instrument.o ${OBJECTDIR}/DataExtract/Instrument_nomain.o;\
+	fi
+
+${OBJECTDIR}/Util/UtilConfigAccess_nomain.o: ${OBJECTDIR}/Util/UtilConfigAccess.o Util/UtilConfigAccess.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Util
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/Util/UtilConfigAccess.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -I/usr/local/include/ -I../../boost_1_60_0 -I. -I. -I. -I. -I. -I. -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Util/UtilConfigAccess_nomain.o Util/UtilConfigAccess.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/Util/UtilConfigAccess.o ${OBJECTDIR}/Util/UtilConfigAccess_nomain.o;\
 	fi
 
 ${OBJECTDIR}/Util/UtilDateTime_nomain.o: ${OBJECTDIR}/Util/UtilDateTime.o Util/UtilDateTime.cpp 
@@ -200,6 +262,19 @@ ${OBJECTDIR}/Util/UtilLogger_nomain.o: ${OBJECTDIR}/Util/UtilLogger.o Util/UtilL
 	    $(COMPILE.cc) -O2 -I/usr/local/include/ -I../../boost_1_60_0 -I. -I. -I. -I. -I. -I. -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Util/UtilLogger_nomain.o Util/UtilLogger.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/Util/UtilLogger.o ${OBJECTDIR}/Util/UtilLogger_nomain.o;\
+	fi
+
+${OBJECTDIR}/Util/UtilMysqlClient_nomain.o: ${OBJECTDIR}/Util/UtilMysqlClient.o Util/UtilMysqlClient.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Util
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/Util/UtilMysqlClient.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -I/usr/local/include/ -I../../boost_1_60_0 -I. -I. -I. -I. -I. -I. -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Util/UtilMysqlClient_nomain.o Util/UtilMysqlClient.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/Util/UtilMysqlClient.o ${OBJECTDIR}/Util/UtilMysqlClient_nomain.o;\
 	fi
 
 ${OBJECTDIR}/main_nomain.o: ${OBJECTDIR}/main.o main.cpp 
