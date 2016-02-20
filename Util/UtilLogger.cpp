@@ -90,5 +90,5 @@ const char* CUtilLogger::GetLogName()
 	return (std::string{"/home/gavincyi/log/"} +
 		   GetProcessName() + "_" +
 		   currDate + "_" +
-		   currTime).c_str();
+		   currTime.substr(0, 6)).c_str();
 }

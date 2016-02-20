@@ -13,6 +13,7 @@
 #include "UtilMysqlClient.h"
 #include "UtilConfigAccess.h"
 #include "UtilLogger.h"
+#include "UtilDateTime.h"
 
 #include <vector>
 
@@ -44,14 +45,25 @@ private:
 
 	/**
 	 * Extract instrument from string
+	 * @param instmtPrefix Instrument prefix
 	 * @param str Raw string
 	 * @return true if success
 	 */
-	bool ExtractInstrumentFromString(std::string& str);
+	bool ExtractInstrumentFromString(std::string& instmtPrefix,
+									 CUtilDateTime& dateTime,
+									 std::string& str);
 	
+	bool InsertHistorialPx();
+	
+	int backDays;
+		
 	std::string hkexSite;
 
 	std::string hkexSiteSuffix;
+	
+	std::string schemaName;
+	
+	std::string tableName;
 
 	std::vector<std::string> underlyingList;
 	

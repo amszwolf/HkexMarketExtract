@@ -35,8 +35,16 @@ public:
 		NOV = 11,
 		DEC = 12
 	};	
+
+	enum CallPut
+	{
+		CALL = 'C',
+		PUT = 'P'
+	};
 	
 	static std::map<std::string, int> ExpiryMonthMap;
+
+	static std::map<int, std::string> ExpiryMonthReverseMap;
 	
 	std::string InstrumentName;
 	
@@ -45,6 +53,8 @@ public:
 	Month ExpiryMonth;
 
 	int ExpiryYear;
+	
+	PriceType Strike;
 	
 	PriceType OpenPrice;
 	
@@ -61,6 +71,8 @@ public:
 	VolumeType OpenInterest;
 
 	int	 OpenInterestChange;
+	
+	CallPut Type;
 
 	/**
 	 * Dump the instrument
@@ -84,7 +96,9 @@ public:
 		DailyLow(0),
 		Volume(0),
 		OpenInterest(0),
-		OpenInterestChange(0)
+		OpenInterestChange(0),
+		Type(CALL),
+		Strike(0)
 	{}
 				
 	/**
@@ -103,7 +117,9 @@ public:
 		DailyLow(orig.DailyLow),
 		Volume(orig.Volume),
 		OpenInterest(orig.OpenInterest),
-		OpenInterestChange(orig.OpenInterestChange)
+		OpenInterestChange(orig.OpenInterestChange),
+		Type(orig.Type),
+		Strike(orig.Strike)
 	{}
 
 	/**
