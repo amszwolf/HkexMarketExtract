@@ -19,7 +19,7 @@ CHkexExtractor::CHkexExtractor() :
 	hkexSite("www.hkex.com.hk"),
 	hkexSiteSuffix("/eng/stat/dmstat/dayrpt/"),
 	underlyingList({"hsif"}),
-	backDays(60),
+	backDays(0),
 	schemaName(""),
 	tableName("historical_px")
 {
@@ -28,13 +28,21 @@ CHkexExtractor::CHkexExtractor() :
 CHkexExtractor::~CHkexExtractor() {
 }
 
-bool CHkexExtractor::Initialize()
+bool CHkexExtractor::Initialize(int numberOfDays)
 {
+	backDays = numberOfDays;
 	schemaName = config.GetValue("MysqlConnection.SchemaName");
 	auto dbhost = config.GetValue("MysqlConnection.Host");
 	auto user = config.GetValue("MysqlConnection.UserName");
 	auto pwd = config.GetValue("MysqlConnection.UserPassword");
 
+	if (backDays <= 0)
+	{
+		Utllog << "Invalid value of backDays : " << backDays;
+		Utllog.LogWarning();
+		return false;
+	}
+	
 	return mysqlClient.Connect(schemaName, dbhost, user, pwd);
 }
 

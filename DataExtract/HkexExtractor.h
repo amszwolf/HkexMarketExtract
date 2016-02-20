@@ -24,7 +24,7 @@ public:
 	 * Initialization
 	 * @return true if success 
 	 */
-	bool Initialize();
+	bool Initialize(int numberOfDays);
 
 	/**
 	 * Start to extract
