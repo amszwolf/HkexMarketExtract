@@ -215,7 +215,7 @@
       <toolsSet>
         <compilerSet>default</compilerSet>
         <dependencyChecking>true</dependencyChecking>
-        <rebuildPropChanged>false</rebuildPropChanged>
+        <rebuildPropChanged>true</rebuildPropChanged>
       </toolsSet>
       <compileType>
         <cTool>
@@ -233,14 +233,13 @@
           <developmentMode>5</developmentMode>
           <incDir>
             <pElem>/usr/local/include/</pElem>
-            <pElem>../../boost_1_60_0</pElem>
-            <pElem>.</pElem>
-            <pElem>.</pElem>
-            <pElem>.</pElem>
-            <pElem>.</pElem>
-            <pElem>.</pElem>
+            <pElem>/usr/include/</pElem>
+            <pElem>/usr/local/include/mysql++</pElem>
+            <pElem>/usr/include/mysql</pElem>
             <pElem>.</pElem>
           </incDir>
+          <commandLine>-std=c++11</commandLine>
+          <useLinkerLibraries>false</useLinkerLibraries>
         </ccTool>
         <fortranCompilerTool>
           <developmentMode>5</developmentMode>
@@ -250,6 +249,19 @@
         </asmTool>
         <linkerTool>
           <output>${TESTDIR}/TestFiles/f2</output>
+          <linkerAddLib>
+            <pElem>/usr/local/lib</pElem>
+            <pElem>/usr/lib64/mysql</pElem>
+          </linkerAddLib>
+          <linkerLibItems>
+            <linkerLibLibItem>boost_date_time</linkerLibLibItem>
+            <linkerLibLibItem>boost_system</linkerLibLibItem>
+            <linkerLibLibItem>boost_thread</linkerLibLibItem>
+            <linkerLibLibItem>boost_regex</linkerLibLibItem>
+            <linkerLibLibItem>mysqlpp</linkerLibLibItem>
+            <linkerLibLibItem>mysqlclient</linkerLibLibItem>
+            <linkerLibLibItem>log4cplus</linkerLibLibItem>
+          </linkerLibItems>
         </linkerTool>
       </compileType>
       <item path="DataExtract/DataExtractTest/FutureInstrumentTest.cpp"
@@ -317,6 +329,26 @@
       </item>
       <item path="cfg/HkexMarketExtract.config" ex="false" tool="3" flavor2="0">
       </item>
+      <folder path="SourceFiles/DataExtract">
+        <ccTool>
+          <incDir>
+            <pElem>Util</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
+      <folder path="TestFiles">
+        <ccTool>
+          <incDir>
+            <pElem>Util</pElem>
+            <pElem>DataExtract</pElem>
+          </incDir>
+        </ccTool>
+        <linkerTool>
+          <linkerLibItems>
+            <linkerLibLibItem>boost_unit_test_framework</linkerLibLibItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
       <folder path="TestFiles/f1">
         <cTool>
           <incDir>
@@ -333,6 +365,11 @@
         </linkerTool>
       </folder>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>Util</pElem>
+          </incDir>
+        </ccTool>
       </item>
     </conf>
   </confs>
