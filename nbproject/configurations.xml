@@ -92,7 +92,7 @@
           <useLinkerLibraries>false</useLinkerLibraries>
         </ccTool>
         <linkerTool>
-          <output>${TESTDIR}/TestFiles/f2</output>
+          <output>${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/HkexMarketExtract</output>
           <linkerAddLib>
             <pElem>/usr/local/lib</pElem>
             <pElem>/usr/lib64/mysql</pElem>
@@ -248,7 +248,7 @@
           <developmentMode>5</developmentMode>
         </asmTool>
         <linkerTool>
-          <output>${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/testing</output>
+          <output>${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/HkexMarketExtract</output>
           <linkerAddLib>
             <pElem>/usr/local/lib</pElem>
             <pElem>/usr/lib64/mysql</pElem>

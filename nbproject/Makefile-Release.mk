@@ -70,11 +70,11 @@ LDLIBSOPTIONS=-L/usr/local/lib -L/usr/lib64/mysql -lboost_date_time -lboost_syst
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
-	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/testing
+	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/HkexMarketExtract
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/testing: ${OBJECTFILES}
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/HkexMarketExtract: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/testing ${OBJECTFILES} ${LDLIBSOPTIONS}
+	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/HkexMarketExtract ${OBJECTFILES} ${LDLIBSOPTIONS}
 
 ${OBJECTDIR}/DataExtract/FutureInstrument.o: nbproject/Makefile-${CND_CONF}.mk DataExtract/FutureInstrument.cpp 
 	${MKDIR} -p ${OBJECTDIR}/DataExtract
@@ -302,7 +302,7 @@ ${OBJECTDIR}/main_nomain.o: ${OBJECTDIR}/main.o main.cpp
 # Clean Targets
 .clean-conf: ${CLEAN_SUBPROJECTS}
 	${RM} -r ${CND_BUILDDIR}/${CND_CONF}
-	${RM} ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/testing
+	${RM} ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/HkexMarketExtract
 
 # Subprojects
 .clean-subprojects:
