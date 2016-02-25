@@ -54,6 +54,8 @@ int main(int argc, char** argv)
 	Utllog.LogInfo("Start to extract.");
 	htmlExtractor.StartExtract();
 	
+	Utllog.LogInfo("Process ended.");
+
     return 0;
 }
 
