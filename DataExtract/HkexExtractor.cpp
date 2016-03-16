@@ -54,7 +54,6 @@ bool CHkexExtractor::StartExtract()
 
 	for (int day = 0; day < backDays; day++)
 	{
-		currDateTime -= boost::gregorian::date_duration(1);
 		string date{};
 		string time{};
 		CUtilDateTime::TimeConvertString(currDateTime, date, time);
@@ -68,6 +67,9 @@ bool CHkexExtractor::StartExtract()
 		string result{};
 		ret &= httpReq.SendRequest(hkexSite, request, result);
 		ret &= ExtractInstrumentFromString(*instmtPrefix, currDateTime, result);
+
+		// Decrement a day
+		currDateTime -= boost::gregorian::date_duration(1);
 	}
 
 	ret &= InsertHistorialPx();

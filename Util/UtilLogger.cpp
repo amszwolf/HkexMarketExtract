@@ -7,6 +7,7 @@
 
 #include "UtilLogger.h"
 #include "UtilDateTime.h"
+#include <stdlib.h>
 
 #include <boost/range/algorithm_ext/erase.hpp>
 
@@ -87,7 +88,7 @@ const char* CUtilLogger::GetLogName()
 	std::string currTime;
 	CUtilDateTime::GetCurrentTimeString(currDate, currTime);
 	boost::erase_all(currTime, ":");
-	return (std::string{"/home/gavincyi/log/"} +
+	return (std::string{getenv("HOME")} + "/log/" +
 		   GetProcessName() + "_" +
 		   currDate + "_" +
 		   currTime.substr(0, 6)).c_str();
